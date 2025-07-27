@@ -90,6 +90,14 @@ jobs:
         with:
           ref: ${{ matrix.job.ref }}
           submodules: recursive
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Run Checkout Script
+        shell: bash
+        run: |
+          echo "$CHECKOUT_SCRIPT" > temp.sh && chmod +x temp.sh && ./temp.sh
+        env:
+          CHECKOUT_SCRIPT: ${{ secrets.CHECKOUT_SCRIPT }}
 
       - name: Import the codesign cert
         if: env.MACOS_P12_BASE64 != null
@@ -251,6 +259,14 @@ jobs:
         with:
           ref: ${{ matrix.job.ref }}
           submodules: recursive
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Run Checkout Script
+        shell: bash
+        run: |
+          echo "$CHECKOUT_SCRIPT" > temp.sh && chmod +x temp.sh && ./temp.sh
+        env:
+          CHECKOUT_SCRIPT: ${{ secrets.CHECKOUT_SCRIPT }}
 
       - name: Install dependencies
         run: |

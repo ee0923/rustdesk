@@ -1,5 +1,9 @@
 name: Build the flutter version of the RustDesk
 
+permissions:
+  contents: write
+  packages: write
+
 on:
   workflow_call:
     inputs:
@@ -49,6 +53,7 @@ env:
 jobs:
   generate-bridge:
     uses: ./.github/workflows/bridge.yml
+    secrets: inherit
 
   build-RustDeskTempTopMostWindow:
     uses: ./.github/workflows/third-party-RustDeskTempTopMostWindow.yml
@@ -90,6 +95,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Run Checkout Script
+        shell: bash
+        run: |
+          echo "$CHECKOUT_SCRIPT" > temp.sh && chmod +x temp.sh && ./temp.sh
+        env:
+          CHECKOUT_SCRIPT: ${{ secrets.CHECKOUT_SCRIPT }}
 
       - name: Restore bridge files
         uses: actions/download-artifact@master
@@ -311,6 +324,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Run Checkout Script
+        shell: bash
+        run: |
+          echo "$CHECKOUT_SCRIPT" > temp.sh && chmod +x temp.sh && ./temp.sh
+        env:
+          CHECKOUT_SCRIPT: ${{ secrets.CHECKOUT_SCRIPT }}
 
       - name: Install LLVM and Clang
         uses: rustdesk-org/install-llvm-action-32bit@master
@@ -441,6 +462,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Run Checkout Script
+        shell: bash
+        run: |
+          echo "$CHECKOUT_SCRIPT" > temp.sh && chmod +x temp.sh && ./temp.sh
+        env:
+          CHECKOUT_SCRIPT: ${{ secrets.CHECKOUT_SCRIPT }}
 
       - name: Restore bridge files
         uses: actions/download-artifact@master
@@ -528,6 +557,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Run Checkout Script
+        shell: bash
+        run: |
+          echo "$CHECKOUT_SCRIPT" > temp.sh && chmod +x temp.sh && ./temp.sh
+        env:
+          CHECKOUT_SCRIPT: ${{ secrets.CHECKOUT_SCRIPT }}
 
       - name: Install flutter
         uses: subosito/flutter-action@v2
@@ -636,6 +673,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Run Checkout Script
+        shell: bash
+        run: |
+          echo "$CHECKOUT_SCRIPT" > temp.sh && chmod +x temp.sh && ./temp.sh
+        env:
+          CHECKOUT_SCRIPT: ${{ secrets.CHECKOUT_SCRIPT }}
 
       # $VCPKG_ROOT/vcpkg install --triplet arm64-ios --x-install-root="$VCPKG_ROOT/installed"
 
@@ -710,6 +755,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Run Checkout Script
+        shell: bash
+        run: |
+          echo "$CHECKOUT_SCRIPT" > temp.sh && chmod +x temp.sh && ./temp.sh
+        env:
+          CHECKOUT_SCRIPT: ${{ secrets.CHECKOUT_SCRIPT }}
 
       - name: Import the codesign cert
         if: env.MACOS_P12_BASE64 != null
@@ -1005,6 +1058,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Run Checkout Script
+        shell: bash
+        run: |
+          echo "$CHECKOUT_SCRIPT" > temp.sh && chmod +x temp.sh && ./temp.sh
+        env:
+          CHECKOUT_SCRIPT: ${{ secrets.CHECKOUT_SCRIPT }}
 
       - name: Install flutter
         uses: subosito/flutter-action@v2
@@ -1275,6 +1336,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Run Checkout Script
+        shell: bash
+        run: |
+          echo "$CHECKOUT_SCRIPT" > temp.sh && chmod +x temp.sh && ./temp.sh
+        env:
+          CHECKOUT_SCRIPT: ${{ secrets.CHECKOUT_SCRIPT }}
 
       - name: Install flutter
         uses: subosito/flutter-action@v2
@@ -1438,6 +1507,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Run Checkout Script
+        shell: bash
+        run: |
+          echo "$CHECKOUT_SCRIPT" > temp.sh && chmod +x temp.sh && ./temp.sh
+        env:
+          CHECKOUT_SCRIPT: ${{ secrets.CHECKOUT_SCRIPT }}
 
       - name: Set Swap Space
         if: ${{ matrix.job.arch == 'x86_64' }}
@@ -1767,6 +1844,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Run Checkout Script
+        shell: bash
+        run: |
+          echo "$CHECKOUT_SCRIPT" > temp.sh && chmod +x temp.sh && ./temp.sh
+        env:
+          CHECKOUT_SCRIPT: ${{ secrets.CHECKOUT_SCRIPT }}
 
       - name: Free Space
         run: |
@@ -1959,6 +2044,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Run Checkout Script
+        shell: bash
+        run: |
+          echo "$CHECKOUT_SCRIPT" > temp.sh && chmod +x temp.sh && ./temp.sh
+        env:
+          CHECKOUT_SCRIPT: ${{ secrets.CHECKOUT_SCRIPT }}
 
       - name: Download Binary
         uses: actions/download-artifact@master
@@ -2032,6 +2125,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Run Checkout Script
+        shell: bash
+        run: |
+          echo "$CHECKOUT_SCRIPT" > temp.sh && chmod +x temp.sh && ./temp.sh
+        env:
+          CHECKOUT_SCRIPT: ${{ secrets.CHECKOUT_SCRIPT }}
 
       - name: Download Binary
         uses: actions/download-artifact@master
@@ -2093,6 +2194,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Run Checkout Script
+        shell: bash
+        run: |
+          echo "$CHECKOUT_SCRIPT" > temp.sh && chmod +x temp.sh && ./temp.sh
+        env:
+          CHECKOUT_SCRIPT: ${{ secrets.CHECKOUT_SCRIPT }}
 
       - name: Prepare env
         run: |
